@@ -1,0 +1,2 @@
+Edit na textot od todo-to so opcija za Save/Cancel na edit
+Hint: edit flag, edit pomoshen object, usloven render na buttons i todo text po id
