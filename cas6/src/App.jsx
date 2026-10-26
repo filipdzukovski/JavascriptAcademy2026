@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { Todos } from './components/Todos';
 
 export function App() {
@@ -6,6 +6,7 @@ export function App() {
   const [todos, setTodos] = useState([]); //cekor 1 - definiram prazen array sto ke gi cuva elementite od nizata todos
   const [newTodo, setNewTodo] = useState(''); //cekor 6 definiram vrednost vo state za noviot input
   const [showCompletedTodos, setShowCompletedTodos] = useState(true);
+  const [editTodo,setEditTodo] = useState(null); // {id,text}
 
 
   //cekor 8 definiram add f-ja
@@ -42,6 +43,23 @@ export function App() {
 
   const completedElements = todos.filter(todo => todo.completed).length
 
+  //eidt functionality
+
+  function handleEdit(id,text){
+    setEditTodo({id,text})
+  }
+
+  function handleCancel(){
+    setEditTodo(null);
+  }
+
+  function handleSave(){
+    setTodos(todos.map(todo=>
+      todo.id === editTodo.id ? {...todo,text:editTodo.text} : todo
+    ))
+    setEditTodo(null);
+  }
+
   return (
     <div id='app'>
 
@@ -67,6 +85,10 @@ export function App() {
         listOfTodos={showCompletedTodos ? todos : todos.filter((todo) => !todo.completed)}
         deleteTodo={deleteTodo}
         markTodoAsDone={markTodoAsDone}
+        editTodo = {editTodo}
+        handleEdit={handleEdit}
+        handleCancel={handleCancel}
+        handleSave={handleSave}
       />
     </div>
   )
