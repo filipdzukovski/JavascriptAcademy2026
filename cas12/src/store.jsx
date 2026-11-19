@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
-import {usersReducer} from './components/users/duck';
+import { usersReducer } from './components/users/duck';
+import { authReducer } from './auth/duck';
+import { postsReducer } from './components/posts/duck';
 
 const reducer = {
-    usersReducer:usersReducer
+    usersReducer: usersReducer,
+    authReducer: authReducer,
+    postsReducer:postsReducer
 }
 
 const logger = createLogger();

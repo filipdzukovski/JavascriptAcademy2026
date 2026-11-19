@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import {logIntoApp} from './duck/operations';
+import {useDispatch} from 'react-redux';
 
 export const Login = () => {
 
     const [loginData, setLoginData] = useState({ username: "", password: "" });
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function logIn(){
+    async function logIn(){
         try{
+            console.log("LOGINDATA:::",loginData)
+            await dispatch(logIntoApp(loginData));
             navigate('/users')
         }
         catch(err){
@@ -29,7 +34,7 @@ export const Login = () => {
             <br />
             <label>Password</label>
             <input
-                type='text'
+                type='password'
                 placeholder='Enter Password'
                 value={loginData.password}
                 onChange={(e) => { setLoginData({ ...loginData, password: e.target.value }) }}

@@ -1,4 +1,11 @@
-import { GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAIL } from './constants';
+import {
+    GET_USERS_REQUEST,
+    GET_USERS_SUCCESS,
+    GET_USERS_FAIL,
+    DELETE_USERS_REQUEST,
+    DELETE_USERS_SUCCESS,
+    DELETE_USERS_FAIL
+} from './constants';
 
 export const fetchUsersRequest = (requestParams) => {
     return {
@@ -17,6 +24,28 @@ export const fetchUsersSuccess = (users) => {
 export const fetchUsersFail = (error) => {
     return {
         type: GET_USERS_FAIL,
+        payload: error
+    }
+}
+
+export const removeUsersRequest = (requestParams) => {
+    return {
+        type: DELETE_USERS_REQUEST,
+        payload: requestParams
+    }
+}
+
+export const removeUsersSuccess = (userId) => {
+    console.log("USERID:::",userId)
+    return {
+        type: DELETE_USERS_SUCCESS,
+        payload: userId
+    }
+}
+
+export const removeUsersFail = (error) => {
+    return {
+        type: DELETE_USERS_FAIL,
         payload: error
     }
 }
